@@ -20,7 +20,8 @@ public class FakeStoreProductServiceimpl implements ProductService{
 
     @Override
     public FakeStoreProductResponseDTO getProduct(int productID) {
-        return null;
+        FakeStoreProductResponseDTO fakeStoreProductResponseDTO = fakeStoreClient.getProductsById(productID);
+        return fakeStoreProductResponseDTO;
     }
 
     @Override
