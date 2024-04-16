@@ -1,7 +1,7 @@
-package Mapper;
+package com.example.FakeStrore.Mapper;
 
-import DTO.ProductResponseDTO;
-import entity.Product;
+import com.example.FakeStrore.DTO.ProductResponseDTO;
+import com.example.FakeStrore.entity.Product;
 
 public class ProductEntityDTOMapper {
 

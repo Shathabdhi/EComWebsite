@@ -1,15 +1,14 @@
-package Service;
+package com.example.FakeStrore.Service;
 
-import Client.FakeStoreClient;
-import DTO.FakeStoreProductRatingDTO;
-import DTO.FakeStoreProductResponseDTO;
-import entity.Product;
+import com.example.FakeStrore.Client.FakeStoreClient;
+import com.example.FakeStrore.DTO.FakeStoreProductResponseDTO;
+import com.example.FakeStrore.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class FakeStoreProductService implements ProductService{
+public class FakeStoreProductServiceimpl implements ProductService{
 
     @Autowired
     private FakeStoreClient fakeStoreClient;
@@ -20,7 +19,7 @@ public class FakeStoreProductService implements ProductService{
     }
 
     @Override
-    public Product getProduct(int productID) {
+    public FakeStoreProductResponseDTO getProduct(int productID) {
         return null;
     }
 
