@@ -3,6 +3,7 @@ package com.example.FakeStrore.Service;
 import com.example.FakeStrore.Client.FakeStoreClient;
 import com.example.FakeStrore.DTO.FakeStoreProductResponseDTO;
 import com.example.FakeStrore.entity.Product;
+import com.example.FakeStrore.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,11 @@ public class FakeStoreProductServiceimpl implements ProductService{
     }
 
     @Override
-    public FakeStoreProductResponseDTO getProduct(int productID) {
+    public FakeStoreProductResponseDTO getProduct(int productID) throws ProductNotFoundException {
         FakeStoreProductResponseDTO fakeStoreProductResponseDTO = fakeStoreClient.getProductsById(productID);
+        if (fakeStoreProductResponseDTO == null){
+            throw  new RuntimeException("Product not found with id : "+productID);
+        }
         return fakeStoreProductResponseDTO;
     }
 
