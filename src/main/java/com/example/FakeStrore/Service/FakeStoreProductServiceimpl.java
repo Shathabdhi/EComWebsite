@@ -23,7 +23,7 @@ public class FakeStoreProductServiceimpl implements ProductService{
     public FakeStoreProductResponseDTO getProduct(int productID) throws ProductNotFoundException {
         FakeStoreProductResponseDTO fakeStoreProductResponseDTO = fakeStoreClient.getProductsById(productID);
         if (fakeStoreProductResponseDTO == null){
-            throw  new RuntimeException("Product not found with id : "+productID);
+            throw  new ProductNotFoundException("Product not found with id : "+ productID);
         }
         return fakeStoreProductResponseDTO;
     }
