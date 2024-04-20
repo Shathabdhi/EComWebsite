@@ -1,5 +1,6 @@
 package com.example.FakeStrore.Client;
 
+import com.example.FakeStrore.DTO.FakeStoreCartResponseDTO;
 import com.example.FakeStrore.DTO.FakeStoreProductResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +20,8 @@ public class FakeStoreClient
     private String fakeStoreAPIBaseURL;
     @Value("${fakestore.api.product.path}")
     private String fakeStoreAPIProductPath;
+    @Value("${fakestore.api.cart.for.user.path}")
+    private String fakeStoreAPICartForUser;
 
     public List<FakeStoreProductResponseDTO> getAllProducts(){
         String fakeStoreGetAllProductUrl = fakeStoreAPIBaseURL.concat(fakeStoreAPIProductPath);
@@ -36,4 +39,41 @@ public class FakeStoreClient
         return productResponse.getBody();
     }
 
+    public List<FakeStoreCartResponseDTO> getCartByUserId(int userId){
+        // link =  https://fakestoreapi.com/products/id
+        if (userId < 1){
+            return null;
+        }
+        String fakeStoreGetCartForUser = fakeStoreAPIBaseURL.concat(fakeStoreAPICartForUser).concat(String.valueOf(userId));
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<FakeStoreCartResponseDTO[]> cartResponse =
+                restTemplate.getForEntity(fakeStoreGetCartForUser,FakeStoreCartResponseDTO[].class);
+        return List.of(cartResponse.getBody());
+    }
+    /*
+    * https://fakestoreapi.com/carts?userId=1 -- > get cart by user id, and user id is query param
+
+
+    {
+        "id": 1,
+            "userId": 1,
+            "date": "2020-03-02T00:00:00.000Z",
+            "products": [
+        {
+            "productId": 1,
+                "quantity": 4
+        },
+        {
+            "productId": 2,
+                "quantity": 1
+        },
+        {
+            "productId": 3,
+                "quantity": 6
+        }
+    ],
+        "__v": 0
+    },
+
+     */
 }
