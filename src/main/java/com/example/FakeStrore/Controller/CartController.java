@@ -19,7 +19,8 @@ public class CartController {
     public ResponseEntity getCartForUser(@PathVariable("userId")int userId){
         List<FakeStoreCartResponseDTO> cartResponse = fakeStoreClient.getCartByUserId(userId);
         if (cartResponse == null){
-            throw new CartNotFoundException("Cart not found for userID" + userId);
+            //throw new CartNotFoundException("Cart not found for userID" + userId);
+            return null;
         }
         return ResponseEntity.ok(cartResponse);
     }

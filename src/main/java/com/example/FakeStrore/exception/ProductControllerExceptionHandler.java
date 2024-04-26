@@ -1,14 +1,14 @@
 package com.example.FakeStrore.exception;
 
+import com.example.FakeStrore.Controller.ProductController;
 import com.example.FakeStrore.DTO.ExceptionResponseDTO;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@ControllerAdvice
-public class ProductServiceExceptionHandler {
+@ControllerAdvice(basePackageClasses = ProductController.class)
+public class ProductControllerExceptionHandler {
     @ExceptionHandler({ProductNotFoundException.class,NoProductPresentException.class})
     public ResponseEntity handleNoProductException(ProductNotFoundException pe){
         ExceptionResponseDTO exceptionResponseDTO = new ExceptionResponseDTO(
@@ -18,10 +18,11 @@ public class ProductServiceExceptionHandler {
     }
 
     @ExceptionHandler(InvalidInputException.class)
-    public ResponseEntity handleProductNotFoundException(InvalidInputException pe){
+    public ResponseEntity handleInvalidInputException(InvalidInputException pe){
         ExceptionResponseDTO exceptionResponseDTO = new ExceptionResponseDTO(
                 pe.getMessage(),400
         );
         return new ResponseEntity<>(exceptionResponseDTO, HttpStatus.BAD_REQUEST);
     }
+
 }

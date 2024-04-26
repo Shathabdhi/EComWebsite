@@ -2,6 +2,7 @@ package com.example.FakeStrore.Client;
 
 import com.example.FakeStrore.DTO.FakeStoreCartResponseDTO;
 import com.example.FakeStrore.DTO.FakeStoreProductResponseDTO;
+import com.example.FakeStrore.exception.CartNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -40,11 +41,11 @@ public class FakeStoreClient
     }
 
     public List<FakeStoreCartResponseDTO> getCartByUserId(int userId){
-        // link =  https://fakestoreapi.com/products/id
+        // link =  https://fakestoreapi.com/carts?userId=1
         if (userId < 1){
-            return null;
+            throw new CartNotFoundException("Cart Not found !");
         }
-        String fakeStoreGetCartForUser = fakeStoreAPIBaseURL.concat(fakeStoreAPICartForUser).concat(String.valueOf(userId));
+        String fakeStoreGetCartForUser = fakeStoreAPIBaseURL.concat(fakeStoreAPICartForUser + userId);
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreCartResponseDTO[]> cartResponse =
                 restTemplate.getForEntity(fakeStoreGetCartForUser,FakeStoreCartResponseDTO[].class);
@@ -53,27 +54,6 @@ public class FakeStoreClient
     /*
     * https://fakestoreapi.com/carts?userId=1 -- > get cart by user id, and user id is query param
 
-
-    {
-        "id": 1,
-            "userId": 1,
-            "date": "2020-03-02T00:00:00.000Z",
-            "products": [
-        {
-            "productId": 1,
-                "quantity": 4
-        },
-        {
-            "productId": 2,
-                "quantity": 1
-        },
-        {
-            "productId": 3,
-                "quantity": 6
-        }
-    ],
-        "__v": 0
-    },
 
      */
 }
