@@ -1,4 +1,4 @@
-package com.example.FakeStrore.DTO;
+package com.example.FakeStrore.DTO.fakeStroreDTOs;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,5 +1,6 @@
 package com.example.FakeStrore.DTO;
 
+import com.example.FakeStrore.entity.Category;
 import lombok.Getter;
 import lombok.Setter;
 

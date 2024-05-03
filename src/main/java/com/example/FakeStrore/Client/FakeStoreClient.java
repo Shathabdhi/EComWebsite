@@ -1,7 +1,7 @@
 package com.example.FakeStrore.Client;
 
-import com.example.FakeStrore.DTO.FakeStoreCartResponseDTO;
-import com.example.FakeStrore.DTO.FakeStoreProductResponseDTO;
+import com.example.FakeStrore.DTO.fakeStroreDTOs.FakeStoreCartResponseDTO;
+import com.example.FakeStrore.DTO.fakeStroreDTOs.FakeStoreProductResponseDTO;
 import com.example.FakeStrore.exception.CartNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
-import java.util.Objects;
+
 @Component
 public class FakeStoreClient
 {

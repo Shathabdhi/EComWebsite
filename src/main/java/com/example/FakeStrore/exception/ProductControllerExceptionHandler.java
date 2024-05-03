@@ -1,7 +1,7 @@
 package com.example.FakeStrore.exception;
 
 import com.example.FakeStrore.Controller.ProductController;
-import com.example.FakeStrore.DTO.ExceptionResponseDTO;
+import com.example.FakeStrore.DTO.fakeStroreDTOs.ExceptionResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -24,5 +24,13 @@ public class ProductControllerExceptionHandler {
         );
         return new ResponseEntity<>(exceptionResponseDTO, HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(RandomException.class)
+    public ResponseEntity handleProductRandomException(RandomException pe){
+        ExceptionResponseDTO exceptionResponseDTO = new ExceptionResponseDTO(
+                pe.getMessage(),404
+        );
+        return new ResponseEntity<>(exceptionResponseDTO, HttpStatus.BAD_REQUEST);
+    }
+
 
 }

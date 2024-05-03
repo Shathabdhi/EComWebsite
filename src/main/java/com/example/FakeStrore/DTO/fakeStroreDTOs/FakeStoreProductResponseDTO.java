@@ -1,5 +1,6 @@
-package com.example.FakeStrore.DTO;
+package com.example.FakeStrore.DTO.fakeStroreDTOs;
 
+import com.example.FakeStrore.DTO.fakeStroreDTOs.FakeStoreProductRatingDTO;
 import lombok.Getter;
 import lombok.Setter;
 

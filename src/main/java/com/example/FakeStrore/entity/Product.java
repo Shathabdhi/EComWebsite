@@ -1,17 +1,20 @@
 package com.example.FakeStrore.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
-public class Product {
+public class Product extends BaseModel{
     //this is how our  response looks
-    private int Id;
     private String title;
     private double price;
     private String description;
-    private String category;
+    @ManyToOne
+    private Category category;
     private String imageURL;
     private double rating;
 }
